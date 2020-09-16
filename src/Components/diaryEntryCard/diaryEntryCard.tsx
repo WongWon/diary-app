@@ -52,10 +52,11 @@ function DiaryEntryCard ({diaryEntry}) {
         fetch(`https://dwondiaryAPI.azurewebsites.net/api/Diaries/${diaryEntry.id}`,{
             method:'DELETE'
         })
+
     }
     return(
         <div>
-            <Card>
+            <Card id="diaryCard">
                 <CardContent>
                     <h1 id="displayedTitle">{diaryEntry.title}</h1>
                     <p id="displayedEntry">{diaryEntry.entry}</p>
