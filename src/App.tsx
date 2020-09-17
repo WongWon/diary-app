@@ -18,6 +18,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
 import './App.css'
+import logo from './companyLogo.png'
 
 const useStyles = makeStyles({
   topBar:  {
@@ -75,6 +76,7 @@ function App() {
     <div className="App">
       <AppBar position="static" className={classes.topBar} id="topBar">
         <ToolBar>
+          <img src={logo} id="logo"></img>
           <Typography variant="h2" id="companyName">
             Diary Write
           </Typography>
