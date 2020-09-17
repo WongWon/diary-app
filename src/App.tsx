@@ -75,7 +75,7 @@ function App() {
     <div className="App">
       <AppBar position="static" className={classes.topBar} id="topBar">
         <ToolBar>
-          <Typography variant="h1">
+          <Typography variant="h2" id="companyName">
             Diary Write
           </Typography>
           <Button onClick={handleOpen}  id="newEntryButton" >Add Diary Entry</Button>

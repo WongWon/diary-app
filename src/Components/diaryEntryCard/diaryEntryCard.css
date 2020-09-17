@@ -5,3 +5,12 @@
 #displayedTitle{
     color:#29B6F6
 }
+
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+
+    #diaryCard{
+    }
+
+}

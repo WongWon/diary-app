@@ -36,12 +36,12 @@
 }
 
 #container{
-  margin-top:30px;
+  margin-top:140px;
 }
 
 #newEntryButton{
-  margin-left:25%;
-  font-size:2em;
+  margin-left:60%;
+  font-size:1.2em;
   border: 2px solid #fff;
   border-radius: 20px;
   color: #fff;
@@ -54,10 +54,57 @@
 
 #topBar{
   width: 100%;
+  position: fixed;
+  top: 0;
 }
 
-@media only screen and (max-width : 320px) {
-  #newEntryButton:hover{
-    background-color:#d219c3;
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+  #container{
+    margin-top:120px;
   }
+
+  #companyName{
+    font-size:2em;
+  }
+
+  #newEntryButton{
+    font-size:0.8em;
+    margin-left:10%;
+
+  }
+
+}
+
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape) {
+
+  #container{
+    margin-top:120px;
+  }
+
+  #newEntryButton{
+    margin-left:40%;
+
+  }
+
+}
+
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : portrait) {
+
+  #container{
+    margin-top:120px;
+  }
+
+  #newEntryButton{
+    margin-left:20%;
+
+  }
+
 }
