@@ -12,12 +12,17 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 
-import  './diaryEntryCard.css'
+import  './diaryEntryCard.css';
 
 import CreateIcon from '@material-ui/icons/Create';
 import DeleteIcon from '@material-ui/icons/Delete';
+import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
+import PauseIcon from '@material-ui/icons/Pause';
 
 import { makeStyles } from '@material-ui/core/styles';
+
+import { useSpeechSynthesis, cancel } from 'react-speech-kit';
+
 
 const useStyles = makeStyles({
     diaryCard: {
@@ -31,10 +36,15 @@ const useStyles = makeStyles({
 
 function DiaryEntryCard ({diaryEntry}) {
 
+    const { speak,cancel } = useSpeechSynthesis();
+
     const classes = useStyles();
     const [open, setOpen] = useState(false)
     const [state, setState] = useState({diaryEntry})
+    const [title, setTitle] = useState(diaryEntry.title)
+    const [entry, setEntry] = useState(diaryEntry.entry)
 
+    console.log(title)
 
     const handleOpen = () => {
         setOpen(true);
@@ -72,13 +82,15 @@ function DiaryEntryCard ({diaryEntry}) {
             method:'DELETE'
         })
 
+
     }
     return(
         <div>
+            
             <Card className={classes.diaryCard} id="diaryCard">
                 <CardContent>
-                    <h1 id="displayedTitle">{diaryEntry.title}</h1>
-                    <p id="displayedEntry">{diaryEntry.entry}</p>
+                    <h1 id="displayedTitle">{title}</h1>
+                    <p id="displayedEntry">{entry}</p>
                 </CardContent>
 
                 <CardActions>
@@ -89,6 +101,14 @@ function DiaryEntryCard ({diaryEntry}) {
                         <IconButton onClick = {deleteEntry} className={classes.binButton}>
                             <DeleteIcon/>
                         </IconButton>
+                        <IconButton onClick ={() => speak({ text:entry})}>
+                            <PlayCircleOutlineIcon/>
+                        </IconButton>
+
+                        <IconButton onClick ={cancel}>
+                            <PauseIcon/>
+                        </IconButton>
+    
                     </ButtonGroup>
                 </CardActions>
 
@@ -101,7 +121,7 @@ function DiaryEntryCard ({diaryEntry}) {
 
                         <TextField 
                         defaultValue={diaryEntry.title}
-                        onChange={e =>setState({...diaryEntry, title: e.target.value})}
+                        onChange={e =>setTitle(e.target.value)}
 
                         id="title"
                         margin="dense"
@@ -116,7 +136,7 @@ function DiaryEntryCard ({diaryEntry}) {
 
                         <TextField 
                         defaultValue={diaryEntry.entry}
-                        onChange={e =>setState({...diaryEntry, entry: e.target.value})}
+                        onChange={e =>setEntry( e.target.value)}
 
                         id="entry"
                         margin="dense"
