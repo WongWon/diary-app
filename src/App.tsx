@@ -12,13 +12,25 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 
-import {BrowserRouter, Router, Switch} from 'react-router-dom'
 import DiaryEntryCard from './Components/diaryEntryCard/diaryEntryCard';
-import DiaryForm from  './Components/diaryForm/diaryForm';
+
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+
+import './App.css'
+
+const useStyles = makeStyles({
+  topBar:  {
+    background: '#29B6F6',
+  },
+
+});
 
 
 function App() {
 
+  const classes = useStyles();
+  
   const [open, setOpen] = useState(false)
   const [diaryEntries, setdiaryEntries] = useState([])
 
@@ -61,12 +73,12 @@ function App() {
 
   return (
     <div className="App">
-      <AppBar position="static">
+      <AppBar position="static" className={classes.topBar} id="topBar">
         <ToolBar>
-          <Typography variant="h2">
+          <Typography variant="h1">
             Diary Write
           </Typography>
-          <Button color="inherit" onClick={handleOpen}>New Diary Entry</Button>
+          <Button onClick={handleOpen}  id="newEntryButton" >Add Diary Entry</Button>
         </ToolBar>
       </AppBar>
 
@@ -111,9 +123,12 @@ function App() {
           </DialogActions>
         </Dialog>
 
-      {diaryEntries.map(diaryEntry => {
-        return <DiaryEntryCard diaryEntry = {diaryEntry}/>
-      })}
+      <Container id="container">
+        {diaryEntries.map(diaryEntry => {
+          return <DiaryEntryCard diaryEntry = {diaryEntry}/>
+        })}
+      </Container>
+ 
 
     
 
